@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       IconButton(
                         onPressed: () async {
-                          await HomeScreenController.deleteData(
+                          await HomeScreenController.editData(
                               HomeScreenController.studentsList[index].id);
                           setState(() {});
                         },
@@ -59,8 +59,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          HomeScreenController.addData();
+        onPressed: () async {
+          await HomeScreenController.addData();
+          setState(() {});
         },
       ),
     );

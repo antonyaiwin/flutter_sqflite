@@ -22,6 +22,7 @@ class HomeScreenController {
     await database.rawInsert(
         'INSERT INTO Student(name, phoneNumber) VALUES(?, ?)',
         ['aiwin', 1234567890]);
+    await getAllData();
   }
 
   // get all data from table
@@ -34,6 +35,15 @@ class HomeScreenController {
   // delete data from table
   static Future<void> deleteData(var id) async {
     await database.rawDelete('DELETE FROM Student WHERE id = ?', [id]);
+    await getAllData();
+  }
+
+  // delete data from table
+  static Future<void> editData(var id) async {
+    int count = await database.rawUpdate(
+        'UPDATE Student SET name = ?, phoneNumber = ? WHERE id = ?',
+        ['updated name', '9876', id]);
+    log('updated: $count');
     await getAllData();
   }
 }
